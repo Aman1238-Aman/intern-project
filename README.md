@@ -99,6 +99,40 @@ php artisan serve
 
 Open: `http://127.0.0.1:8000`
 
+## Render Deployment (Public URL)
+
+This repository is configured for Render using:
+
+- `render.yaml`
+- `Dockerfile`
+- `scripts/render-entrypoint.sh`
+
+### Steps
+
+1. Push this project to GitHub.
+2. In Render, click **New +** -> **Blueprint** and select this repo.
+3. Render will create:
+   - 1 web service (`laravel-quiz-system`)
+   - 1 PostgreSQL database (`laravel-quiz-db`)
+4. In the web service env vars, set `APP_KEY` manually:
+   ```bash
+   php artisan key:generate --show
+   ```
+5. Deploy.
+
+### Required Render Variables
+
+- `APP_KEY` (manual)
+- `DATABASE_URL` (auto-wired from Render PostgreSQL via blueprint)
+- `APP_ENV=production`
+- `APP_DEBUG=false`
+
+### Notes
+
+- The container runs `php artisan migrate --force` during startup.
+- Demo seed runs safely using `firstOrCreate`.
+- File uploads are local and ephemeral on Render free web service.
+
 ## Deliverables Included
 
 - Working Laravel application
