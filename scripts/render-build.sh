@@ -16,5 +16,4 @@ php artisan db:seed --class=QuizDemoSeeder --force
 
 echo "Caching config/routes/views..."
 php artisan config:cache
-php artisan route:cache
 php artisan view:cache

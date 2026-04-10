@@ -122,7 +122,7 @@ This repository is configured for Render using:
 
 ### Required Render Variables
 
-- `APP_KEY` (manual)
+- `APP_KEY` (recommended manual; runtime auto-generates if missing)
 - `DATABASE_URL` (auto-wired from Render PostgreSQL via blueprint)
 - `APP_ENV=production`
 - `APP_DEBUG=false`
@@ -130,6 +130,7 @@ This repository is configured for Render using:
 ### Notes
 
 - The container runs `php artisan migrate --force` during startup.
+- Migration has retry handling to avoid cold-start DB timing failures.
 - Demo seed runs safely using `firstOrCreate`.
 - File uploads are local and ephemeral on Render free web service.
 
