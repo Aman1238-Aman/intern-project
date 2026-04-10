@@ -20,8 +20,6 @@ RUN mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cac
 
 RUN touch storage/database.sqlite
 
-RUN php artisan config:clear && php artisan cache:clear
-
 EXPOSE 10000
 
 CMD php artisan serve --host=0.0.0.0 --port=10000
